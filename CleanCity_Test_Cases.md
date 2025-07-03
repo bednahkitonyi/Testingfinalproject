@@ -177,66 +177,107 @@ Translate authentication test scenarios into detailed, step-by-step test cases f
 
 ---
 
-## ✅ Test Cases for Waste Management Module – CleanCity Web App
+# 🧪 Test Cases for Waste Management System
 
+## 4.1 Pickup Scheduling
+
+### ✅ TC-001: Schedule a Pickup with Valid Inputs
+1. Navigate to scheduling page  
+2. Enter future date  
+3. Select waste type (e.g., Recyclable)  
+4. Choose quantity (e.g., Medium)  
+5. Enter special instructions (optional)  
+6. Verify address is auto-filled  
+7. Submit request  
+**Expected Result:** Pickup is scheduled successfully
+
+### ❌ TC-002: Attempt to Schedule Pickup with Past Date
+1. Enter a past date  
+2. Fill all other valid details  
+3. Submit request  
+**Expected Result:** Error message displayed – date must be in the future
+
+### ❌ TC-003: Schedule Pickup Without Selecting Waste Type
+1. Leave waste type empty  
+2. Fill all other fields  
+3. Submit request  
+**Expected Result:** Error message – waste type is required
+
+### ❌ TC-004: Schedule Pickup Without Quantity
+1. Leave quantity empty  
+2. Fill other fields  
+3. Submit request  
+**Expected Result:** Error message – quantity is required
+
+### ❌ TC-005: Schedule Pickup With Too Long Special Instructions
+1. Enter 201+ characters in special instructions  
+2. Fill other fields  
+3. Submit request  
+**Expected Result:** Error message – max 200 characters allowed
+
+### ❌ TC-006: Pickup Date Less Than 24 Hours Away
+1. Select a date less than 24 hours in future  
+2. Fill all required fields  
+3. Submit request  
+**Expected Result:** Validation error – must be at least 24 hours in advance
+
+### ✅ TC-007: View Available Time Slots
+1. Go to scheduling page  
+2. Choose valid pickup date  
+**Expected Result:** Available time slots are displayed
+
+### ❌ TC-008: Schedule Multiple Pickups on Same Date
+1. Schedule a pickup for a given date  
+2. Attempt to schedule another pickup for same date  
+**Expected Result:** Error – only one pickup per date allowed
 
 ---
 
-## 📝 Section 1: Pickup Request Form (User)
+## 4.2 Request Management
 
-| **Test Case ID** | **Scenario**                               | **Preconditions**       | **Steps**                                                                 | **Test Data**                                      | **Expected Result**                                      |
-|------------------|--------------------------------------------|--------------------------|---------------------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------|
-| TC-WM-01         | Submit form with valid inputs              | User is logged in        | 1. Open form<br>2. Fill in name, location, type, date<br>3. Submit       | Name: John Doe<br>Location: Nairobi<br>Type: Plastic<br>Date: Tomorrow | Confirmation: "Request submitted successfully"           |
-| TC-WM-02         | Submit without selecting location          | User is logged in        | Fill in name and waste type, leave location blank, then submit          | Name: Jane Doe<br>Waste Type: Organic              | Error: "Location is required"                            |
-| TC-WM-03         | Submit without selecting waste type        | User is logged in        | Fill in name and location, leave waste type blank, then submit          | Name: Jane Doe<br>Location: Kisumu                 | Error: "Waste Type is required"                          |
-| TC-WM-04         | Submit without full name                   | User is logged in        | Fill in location and waste type, leave name blank, then submit          | Location: Kisumu<br>Waste Type: Plastic            | Error: "Full Name is required"                           |
-| TC-WM-05         | Submit all fields blank                    | User is logged in        | Open form and click submit with all fields empty                        | –                                                  | Multiple error messages shown                            |
-| TC-WM-06         | Select a past pickup date                  | User is logged in        | Fill in all fields, select a past date, then submit                     | Date: Yesterday                                    | Error or auto-adjust to future date                     |
-| TC-WM-07         | Use special characters in name             | User is logged in        | Fill in name with special characters, then submit                       | Name: @John*#                                      | Submission successful, characters stored correctly       |
-| TC-WM-08         | Submit duplicate request                   | User is logged in        | Submit same name and date twice                                         | Name: John Doe<br>Date: 2025-07-04                 | System handles duplicates gracefully                     |
-| TC-WM-09         | Submit while logged out                    | User is logged out       | Open form and attempt to submit                                         | –                                                  | Redirect to login or error: "You must be logged in"      |
-| TC-WM-10         | Submit via mobile browser                  | Mobile browser used      | Fill and submit form                                                    | Valid form inputs                                  | Form is responsive and works properly                    |
+### ✅ TC-009: View Pickup Request History
+1. Log in  
+2. Go to request history  
+**Expected Result:** List of all past pickup requests displayed
 
----
+### ✅ TC-010: Cancel Pending Pickup Request
+1. Select a pending request  
+2. Click cancel  
+**Expected Result:** Status changes to Cancelled
 
-## 📊 Section 2: Dashboard View (User)
+### ✅ TC-011: Modify Request More Than 24 Hours in Advance
+1. Select request with pickup time more than 24 hours away  
+2. Update details (e.g., quantity)  
+**Expected Result:** Details updated successfully
 
-| **Test Case ID** | **Scenario**                               | **Preconditions**       | **Steps**                                            | **Expected Result**                                 |
-|------------------|--------------------------------------------|--------------------------|------------------------------------------------------|-----------------------------------------------------|
-| TC-WM-11         | View dashboard                             | User is logged in        | Navigate to dashboard                                | List of user's requests shown                       |
-| TC-WM-12         | Filter by status "Pending"                 | Mixed-status requests     | Apply filter: Status = Pending                       | Only pending requests displayed                     |
-| TC-WM-13         | Filter by location "Kisumu"                | Kisumu + other records    | Filter: Location = Kisumu                            | Only Kisumu records displayed                       |
-| TC-WM-14         | Combine location & status filters          | Completed Nairobi records | Filter: Nairobi + Completed                          | Matching requests displayed                         |
-| TC-WM-15         | Reset filters                              | Filters are applied       | Click reset                                          | All requests re-displayed                           |
-| TC-WM-16         | No results for filters                     | No matching entries       | Apply unmatched filter (e.g., Location = Mars)       | Message: "No matching records found"                |
-| TC-WM-17         | View dashboard while logged out            | User is logged out        | Access dashboard URL                                 | Redirect to login page                              |
-| TC-WM-18         | Handle many entries                        | Many records exist        | Open dashboard                                       | Pagination or scrollable UI displayed               |
+### ❌ TC-012: Modify Request Less Than 24 Hours in Advance
+1. Select request with pickup time less than 24 hours away  
+2. Attempt to modify details  
+**Expected Result:** Error – modification not allowed
+
+### ✅ TC-013: Check Status Display for Request
+1. View request list  
+**Expected Result:** Each request shows status (Pending, Confirmed, Completed, Cancelled)
 
 ---
 
-## ⚙️ Section 3: Admin Panel – Request Management
+## 4.3 Request Tracking
 
-| **Test Case ID** | **Scenario**                               | **Preconditions**       | **Steps**                                                        | **Expected Result**                                   |
-|------------------|--------------------------------------------|--------------------------|------------------------------------------------------------------|-------------------------------------------------------|
-| TC-WM-19         | View admin request table                   | Admin is logged in       | Navigate to admin panel                                          | All user requests listed                             |
-| TC-WM-20         | Update status to "Scheduled"               | Request exists            | Select request, change status, click Save                        | Status updated with confirmation                     |
-| TC-WM-21         | Update without selecting a request         | –                        | Click update with no request selected                            | Error or disabled update button                      |
-| TC-WM-22         | Update without selecting new status        | A request is selected     | Try updating without selecting new status                        | Error: "Please select status"                        |
-| TC-WM-23         | Multiple updates on same request           | Request exists            | Change status multiple times                                     | All changes saved correctly                          |
-| TC-WM-24         | Status reflects on user dashboard          | Admin updates request     | User checks dashboard                                            | Updated status is visible                            |
-| TC-WM-25         | Admin view on mobile                       | –                        | Open admin panel on mobile device                                | Layout remains responsive                            |
-| TC-WM-26         | View system statistics                     | System contains data      | Navigate to stats section                                        | Stats match backend values                           |
+### ✅ TC-014: Real-time Status Update
+1. Submit pickup request  
+2. Trigger status change in system (e.g., Confirmed)  
+**Expected Result:** Status updates reflect immediately in UI
 
----
+### ✅ TC-015: Notification on Status Change
+1. Submit request  
+2. System updates status  
+**Expected Result:** Notification received (email, push, etc.)
 
-## 🛠️ Section 4: Error Handling & UX
-
-| **Test Case ID** | **Scenario**                               | **Preconditions**       | **Steps**                                    | **Expected Result**                              |
-|------------------|--------------------------------------------|--------------------------|----------------------------------------------|--------------------------------------------------|
-| TC-WM-27         | Submit with poor network                   | Simulate slow connection | Submit form                                   | Error or retry option shown                      |
-| TC-WM-28         | Admin updates while filtering              | Data table is filtered    | Update status of a request                    | Update still processed correctly                 |
-| TC-WM-29         | Dashboard loads slowly                     | Many records exist        | Open dashboard                                | Loading indicator shown                          |
-| TC-WM-30         | Messages disappear after action            | Error or success occurs   | Wait or fix issue                             | Messages fade/clear automatically                |
+### ✅ TC-016: Add Feedback After Completion
+1. Wait for pickup completion  
+2. Navigate to feedback section  
+3. Submit feedback  
+**Expected Result:** Feedback is recorded successfully
 
 
 **Prepared By:** QA Team, CleanCity  
