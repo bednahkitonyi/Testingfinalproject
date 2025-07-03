@@ -179,181 +179,64 @@ Translate authentication test scenarios into detailed, step-by-step test cases f
 
 ## ✅ Test Cases for Waste Management Module – CleanCity Web App
 
----
-
-### 📝 Pickup Request Form (User)
-
-**TC-WM-01** – Submit form with valid inputs  
-**Preconditions:** User is logged in  
-**Steps:**  
-1. Open form  
-2. Fill in name, location, waste type, preferred date  
-3. Submit  
-**Test Data:** Name: John Doe, Location: Nairobi, Type: Plastic, Date: Tomorrow  
-**Expected Result:** Confirmation message: "Request submitted successfully"
-
-**TC-WM-02** – Submit without selecting location  
-**Preconditions:** User is logged in  
-**Steps:** Fill in name and waste type, leave location blank, then submit  
-**Test Data:** Name: Jane Doe, Waste Type: Organic  
-**Expected Result:** Error: "Location is required"
-
-**TC-WM-03** – Submit without selecting waste type  
-**Preconditions:** User is logged in  
-**Steps:** Fill in name and location, leave waste type blank, then submit  
-**Test Data:** Name: Jane Doe, Location: Kisumu  
-**Expected Result:** Error: "Waste Type is required"
-
-**TC-WM-04** – Submit without full name  
-**Preconditions:** User is logged in  
-**Steps:** Fill in location and waste type, leave name blank, then submit  
-**Test Data:** Location: Kisumu, Waste Type: Plastic  
-**Expected Result:** Error: "Full Name is required"
-
-**TC-WM-05** – Submit all fields blank  
-**Preconditions:** User is logged in  
-**Steps:** Open form and click submit with all fields empty  
-**Expected Result:** Multiple error messages for each required field
-
-**TC-WM-06** – Select a past pickup date  
-**Preconditions:** User is logged in  
-**Steps:** Fill in all fields and select a date in the past, then submit  
-**Test Data:** Date: Yesterday  
-**Expected Result:** Error: "Date must be in the future" or auto-adjust
-
-**TC-WM-07** – Use special characters in name  
-**Preconditions:** User is logged in  
-**Steps:** Fill in form with name containing special characters and submit  
-**Test Data:** Name: @John*#  
-**Expected Result:** Submission successful, characters stored correctly
-
-**TC-WM-08** – Submit duplicate request  
-**Preconditions:** User is logged in  
-**Steps:** Submit the same name and date twice  
-**Test Data:** John Doe, 2025-07-04  
-**Expected Result:** System prevents or handles duplicate gracefully
-
-**TC-WM-09** – Submit while logged out  
-**Preconditions:** User is logged out  
-**Steps:** Open form and try to submit  
-**Expected Result:** Redirect to login or error: "You must be logged in"
-
-**TC-WM-10** – Submit via mobile browser  
-**Preconditions:** Use mobile browser or emulator  
-**Steps:** Fill out and submit form  
-**Test Data:** Valid form inputs  
-**Expected Result:** Form is responsive and functional
 
 ---
 
-### 📊 Dashboard View (User)
+## 📝 Section 1: Pickup Request Form (User)
 
-**TC-WM-11** – View dashboard  
-**Preconditions:** User logged in  
-**Steps:** Navigate to dashboard  
-**Expected Result:** List of all user’s requests shown
-
-**TC-WM-12** – Filter by status "Pending"  
-**Preconditions:** Mixed-status requests exist  
-**Steps:** Select filter: Pending  
-**Expected Result:** Only pending requests shown
-
-**TC-WM-13** – Filter by location "Kisumu"  
-**Preconditions:** Kisumu and other requests exist  
-**Steps:** Select filter: Location = Kisumu  
-**Expected Result:** Only Kisumu records displayed
-
-**TC-WM-14** – Combine location & status filters  
-**Preconditions:** Completed Nairobi requests exist  
-**Steps:** Set filters: Location = Nairobi, Status = Completed  
-**Expected Result:** Matching records shown
-
-**TC-WM-15** – Reset filters  
-**Preconditions:** Filters are applied  
-**Steps:** Click reset  
-**Expected Result:** All requests shown again
-
-**TC-WM-16** – No results for filters  
-**Preconditions:** Filter will return no results  
-**Steps:** Select unmatched filter e.g., Location = Mars  
-**Expected Result:** Message: "No matching records found"
-
-**TC-WM-17** – View dashboard logged out  
-**Preconditions:** User is logged out  
-**Steps:** Go to dashboard URL  
-**Expected Result:** Redirect to login page
-
-**TC-WM-18** – Handle many entries  
-**Preconditions:** Many records exist  
-**Steps:** Open dashboard  
-**Expected Result:** UI supports pagination or scroll properly
+| **Test Case ID** | **Scenario**                               | **Preconditions**       | **Steps**                                                                 | **Test Data**                                      | **Expected Result**                                      |
+|------------------|--------------------------------------------|--------------------------|---------------------------------------------------------------------------|----------------------------------------------------|----------------------------------------------------------|
+| TC-WM-01         | Submit form with valid inputs              | User is logged in        | 1. Open form<br>2. Fill in name, location, type, date<br>3. Submit       | Name: John Doe<br>Location: Nairobi<br>Type: Plastic<br>Date: Tomorrow | Confirmation: "Request submitted successfully"           |
+| TC-WM-02         | Submit without selecting location          | User is logged in        | Fill in name and waste type, leave location blank, then submit          | Name: Jane Doe<br>Waste Type: Organic              | Error: "Location is required"                            |
+| TC-WM-03         | Submit without selecting waste type        | User is logged in        | Fill in name and location, leave waste type blank, then submit          | Name: Jane Doe<br>Location: Kisumu                 | Error: "Waste Type is required"                          |
+| TC-WM-04         | Submit without full name                   | User is logged in        | Fill in location and waste type, leave name blank, then submit          | Location: Kisumu<br>Waste Type: Plastic            | Error: "Full Name is required"                           |
+| TC-WM-05         | Submit all fields blank                    | User is logged in        | Open form and click submit with all fields empty                        | –                                                  | Multiple error messages shown                            |
+| TC-WM-06         | Select a past pickup date                  | User is logged in        | Fill in all fields, select a past date, then submit                     | Date: Yesterday                                    | Error or auto-adjust to future date                     |
+| TC-WM-07         | Use special characters in name             | User is logged in        | Fill in name with special characters, then submit                       | Name: @John*#                                      | Submission successful, characters stored correctly       |
+| TC-WM-08         | Submit duplicate request                   | User is logged in        | Submit same name and date twice                                         | Name: John Doe<br>Date: 2025-07-04                 | System handles duplicates gracefully                     |
+| TC-WM-09         | Submit while logged out                    | User is logged out       | Open form and attempt to submit                                         | –                                                  | Redirect to login or error: "You must be logged in"      |
+| TC-WM-10         | Submit via mobile browser                  | Mobile browser used      | Fill and submit form                                                    | Valid form inputs                                  | Form is responsive and works properly                    |
 
 ---
 
-### ⚙️ Admin Panel – Request Management
+## 📊 Section 2: Dashboard View (User)
 
-**TC-WM-19** – View admin request table  
-**Preconditions:** Admin is logged in  
-**Steps:** Navigate to admin panel  
-**Expected Result:** All user requests shown
-
-**TC-WM-20** – Update status to "Scheduled"  
-**Preconditions:** Request exists  
-**Steps:** Select a request, change status to Scheduled, click Save  
-**Expected Result:** Status updated, confirmation shown
-
-**TC-WM-21** – Update without selecting request  
-**Steps:** Click update without selecting any request  
-**Expected Result:** Error or disabled update button
-
-**TC-WM-22** – Update without selecting new status  
-**Preconditions:** A request is selected  
-**Steps:** Click update without choosing new status  
-**Expected Result:** Error: "Please select status"
-
-**TC-WM-23** – Multiple updates on same request  
-**Preconditions:** Request exists  
-**Steps:** Change status multiple times  
-**Expected Result:** All changes saved correctly
-
-**TC-WM-24** – Status reflects on user dashboard  
-**Preconditions:** Admin updates request  
-**Steps:** User views dashboard  
-**Expected Result:** Updated status visible to user
-
-**TC-WM-25** – Admin on mobile view  
-**Steps:** Open admin panel on mobile  
-**Expected Result:** Layout is responsive and usable
-
-**TC-WM-26** – View system stats  
-**Preconditions:** System has data  
-**Steps:** View stats panel  
-**Expected Result:** Stats match backend data
+| **Test Case ID** | **Scenario**                               | **Preconditions**       | **Steps**                                            | **Expected Result**                                 |
+|------------------|--------------------------------------------|--------------------------|------------------------------------------------------|-----------------------------------------------------|
+| TC-WM-11         | View dashboard                             | User is logged in        | Navigate to dashboard                                | List of user's requests shown                       |
+| TC-WM-12         | Filter by status "Pending"                 | Mixed-status requests     | Apply filter: Status = Pending                       | Only pending requests displayed                     |
+| TC-WM-13         | Filter by location "Kisumu"                | Kisumu + other records    | Filter: Location = Kisumu                            | Only Kisumu records displayed                       |
+| TC-WM-14         | Combine location & status filters          | Completed Nairobi records | Filter: Nairobi + Completed                          | Matching requests displayed                         |
+| TC-WM-15         | Reset filters                              | Filters are applied       | Click reset                                          | All requests re-displayed                           |
+| TC-WM-16         | No results for filters                     | No matching entries       | Apply unmatched filter (e.g., Location = Mars)       | Message: "No matching records found"                |
+| TC-WM-17         | View dashboard while logged out            | User is logged out        | Access dashboard URL                                 | Redirect to login page                              |
+| TC-WM-18         | Handle many entries                        | Many records exist        | Open dashboard                                       | Pagination or scrollable UI displayed               |
 
 ---
 
-### 🛠️ Error Handling & UX
+## ⚙️ Section 3: Admin Panel – Request Management
 
-**TC-WM-27** – Submit with poor network  
-**Preconditions:** Simulate slow network  
-**Steps:** Submit the form  
-**Expected Result:** Error or retry option shown
+| **Test Case ID** | **Scenario**                               | **Preconditions**       | **Steps**                                                        | **Expected Result**                                   |
+|------------------|--------------------------------------------|--------------------------|------------------------------------------------------------------|-------------------------------------------------------|
+| TC-WM-19         | View admin request table                   | Admin is logged in       | Navigate to admin panel                                          | All user requests listed                             |
+| TC-WM-20         | Update status to "Scheduled"               | Request exists            | Select request, change status, click Save                        | Status updated with confirmation                     |
+| TC-WM-21         | Update without selecting a request         | –                        | Click update with no request selected                            | Error or disabled update button                      |
+| TC-WM-22         | Update without selecting new status        | A request is selected     | Try updating without selecting new status                        | Error: "Please select status"                        |
+| TC-WM-23         | Multiple updates on same request           | Request exists            | Change status multiple times                                     | All changes saved correctly                          |
+| TC-WM-24         | Status reflects on user dashboard          | Admin updates request     | User checks dashboard                                            | Updated status is visible                            |
+| TC-WM-25         | Admin view on mobile                       | –                        | Open admin panel on mobile device                                | Layout remains responsive                            |
+| TC-WM-26         | View system statistics                     | System contains data      | Navigate to stats section                                        | Stats match backend values                           |
 
-**TC-WM-28** – Admin updates while filtering  
-**Preconditions:** Data table is filtered  
-**Steps:** Update a request status  
-**Expected Result:** Update still processed correctly
+---
 
-**TC-WM-29** – Dashboard loads slowly  
-**Preconditions:** Many entries  
-**Steps:** Open dashboard  
-**Expected Result:** Loading indicator shown
+## 🛠️ Section 4: Error Handling & UX
 
-**TC-WM-30** – Messages disappear after action  
-**Preconditions:** Error or success triggered  
-**Steps:** Fix form or wait  
-**Expected Result:** Messages fade or clear smoothly
-
+| **Test Case ID** | **Scenario**                               | **Preconditions**       | **Steps**                                    | **Expected Result**                              |
+|------------------|--------------------------------------------|--------------------------|----------------------------------------------|--------------------------------------------------|
+| TC-WM-27         | Submit with poor network                   | Simulate slow connection | Submit form                                   | Error or retry option shown                      |
+| TC-WM-28         | Admin updates while filtering              | Data table is filtered    | Update status of a request                    | Update still processed correctly                 |
+| TC-WM-29         | Dashboard loads slowly                     | Many records exist        | Open dashboard                                | Loading indicator shown                          |
+| TC-WM-30         | Messages disappear after action            | Error or success occurs   | Wait or fix issue                             | Messages fade/clear automatically                |
 
 
 **Prepared By:** QA Team, CleanCity  
