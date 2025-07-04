@@ -14,43 +14,58 @@ The test cases cover both **functional** and **non-functional** aspects of the s
 - **Preconditions:** User is on the Register page
 - **Test Steps:**
   1. Enter full name: "Jane Doe"
-  2. Enter email: "jane@example.com"
-  3. Enter password: "password123"
-  4. Confirm password: "password123"
-  5. Click "Create Account"
+  2. Enter email: "user1@test.com"
+  3. Enter password: "TestPass123"
+  4. Confirm password: "TestPass123"
+  5. Click "Register" button
 - **Expected Result:** Account is successfully created; user redirected to login with a success message
 
 #### ❌ TC-R-02: Missing Name Field
 - **Test Steps:**
   1. Leave the name field blank
-  2. Fill other fields correctly
-  3. Click "Create Account"
+  2. Enter email: "user1@test.com"
+  3. Enter password: "TestPass123"
+  4. Confirm password: "TestPass123"
+  5. Click "Register" button
 - **Expected Result:** Error displayed: "Full Name is required"
 
 #### ❌ TC-R-03: Email Already Exists
 - **Test Steps:**
-  1. Use an existing email: "user@cleancity.com"
-  2. Fill other fields
-  3. Submit form
+  1.Enter full name: "Jane Doe"
+  2. Use an existing email: "user1@cleancity.com"
+  3.Enter password: "TestPass123".
+  4.Confirm password: "TestPass123"
+  4. Click "Register" button
+  
 - **Expected Result:** Error displayed: "Email already exists"
 
 #### ❌ TC-R-04: Password Mismatch
 - **Test Steps:**
-  1. Enter password: "abc123"
-  2. Confirm password: "123abc"
-  3. Submit form
+  1. Enter full name: "Jane Doe"
+  2. Enter email: "user1@test.com"
+  3. Enter password: "TestPass123"
+  4. Confirm password: "123abc"
+  5. Click "Register" button
 - **Expected Result:** Error displayed: "Passwords do not match"
 
 #### ❌ TC-R-05: Password Too Short
 - **Test Steps:**
-  1. Enter password: "ab"
-  2. Submit form
+  1. Enter full name: "Jane Doe"
+  2. Enter email: "user1@test.com"
+  3. Enter password: "TestPass"
+  4. Confirm password: "TestPass"
+  5. Click "Register" button
+     
 - **Expected Result:** Error: "Password must be at least 3 characters"
 
 #### ❌ TC-R-06: Invalid Email Format
 - **Test Steps:**
-  1. Enter email: "jane@com"
-  2. Submit form
+  1. Enter full name: "Jane Doe"
+  2. Enter email: "user1@test"
+  4. Enter password: "TestPass123"
+  5. Confirm password: "TestPass123"
+  6. Click "Register" button
+     
 - **Expected Result:** Error: "Invalid email address"
 
 ---
@@ -60,47 +75,53 @@ The test cases cover both **functional** and **non-functional** aspects of the s
 #### ✅ TC-L-01: Valid User Login
 - **Test Steps:**
   1. Go to login page
-  2. Enter: Email: "user@cleancity.com" | Password: "password123"
-  3. Click "Sign In"
+  2. Enter: Email: "user@cleancity.com"
+  3. Enter Password: "TestPass123"
+  4. Click "Login" button
 - **Expected Result:** Redirect to Dashboard; user-specific links shown
 
 #### ✅ TC-L-02: Valid Admin Login
 - **Test Steps:**
-  1. Enter: Email: "admin@cleancity.com" | Password: "admin123"
-  2. Click "Sign In"
+  1. Enter: Email: "admin@cleancity.com"
+  2. Password: "admin123"
+  3. Click "Login" button
 - **Expected Result:** Redirect to Dashboard; admin panel link is visible
 
 #### ❌ TC-L-03: Wrong Password
 - **Test Steps:**
-  1. Enter valid email
-  2. Enter incorrect password
-  3. Submit
+  1. Enter valid registered user email e.g user1@test.com
+  2. Enter incorrect password e.g "Test"
+  3. Click "Login" button
 - **Expected Result:** Error: "Invalid email or password"
 
 #### ❌ TC-L-04: Non-Existent Email
 - **Test Steps:**
-  1. Enter unused email
-  2. Submit with any password
+  1. Enter unused email e.g "user@test"
+  2. Enter any password
+  3. Click "Login" button
+     
 - **Expected Result:** Error: "Invalid email or password"
 
 #### ❌ TC-L-05: Empty Email
 - **Test Steps:**
   1. Leave email blank
-  2. Enter valid password
-  3. Submit
+  2. Enter valid password e.g "TestPass123"
+  3. Click "Login" button
 - **Expected Result:** Error: "Email is required"
 
 #### ❌ TC-L-06: Empty Password
 - **Test Steps:**
-  1. Enter valid email
+  1. Enter valid registered email e.g "user1@test.com"
   2. Leave password blank
-  3. Submit
+  3. Click "Login" button
+     
 - **Expected Result:** Error: "Password is required"
 
 #### ❌ TC-L-07: SQL Injection Attempt
 - **Test Steps:**
-  1. Enter `admin@cleancity.com` and password `' OR 1=1 --`
-  2. Submit
+  1. Enter `admin@cleancity.com`
+  2. Password `' OR 1=1 --`
+  3. Submit
 - **Expected Result:** Login blocked; generic error shown
 
 ---
@@ -185,25 +206,37 @@ The test cases cover both **functional** and **non-functional** aspects of the s
 ## 4.1 Pickup Scheduling
 
 ### ✅ TC-001: Schedule a Pickup with Valid Inputs
-1. Navigate to scheduling page  
-2. Enter future date  
-3. Select waste type (e.g., Recyclable)  
-4. Choose quantity (e.g., Medium)  
-5. Enter special instructions (optional)  
-6. Verify address is auto-filled  
-7. Submit request  
+1. Navigate to scheduling page
+2. Enter a registered full name  e.g "John Doe"
+3. Enter valid registered email e.g "user1@test.com"
+4. Select a pick up location e.g "Nairobi"
+7. Select waste type (e.g., Recyclable)
+8. Choose future pick date  e.g "12/07/2025"
+9. Enter any additional description  
+10. Click "Submit request" button
+      
 **Expected Result:** Pickup is scheduled successfully
 
 ### ❌ TC-002: Attempt to Schedule Pickup with Past Date
-1. Enter a past date  
-2. Fill all other valid details  
-3. Submit request  
+1. Navigate to scheduling page
+2. Enter a registered full name  e.g "John Doe"
+3. Enter valid registered email e.g "user1@test.com"
+4. Select a pick up location e.g "Nairobi"
+5. Select waste type (e.g., Recyclable)
+6. Enter a past date e.g "1/07/2025"
+7. Enter any additional description  
+8. Click "Submit request" button
 **Expected Result:** Error message displayed – date must be in the future
 
 ### ❌ TC-003: Schedule Pickup Without Selecting Waste Type
-1. Leave waste type empty  
-2. Fill all other fields  
-3. Submit request  
+1. Navigate to scheduling page
+2. Enter a registered full name  e.g "John Doe"
+3. Enter valid registered email e.g "user1@test.com"
+4. Select a pick up location e.g "Nairobi"
+5. leave the Select waste type empty
+6. Enter a future date e.g "11/07/2025"
+7. Enter any additional description  
+8. Click "Submit request" button
 **Expected Result:** Error message – waste type is required
 
 ### ❌ TC-004: Schedule Pickup Without Quantity
