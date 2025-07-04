@@ -1,7 +1,10 @@
 ## 🧪 Test Cases for Authentication System – CleanCity Web App
 
-### 📌 Objective
-Translate authentication test scenarios into detailed, step-by-step test cases for manual execution.
+# 📄 Introduction
+
+This document outlines the comprehensive set of test cases designed to validate the functionality, performance, and reliability of the application under test. Each test case has been developed based on the system’s requirements and user expectations to ensure that all features behave as intended across various scenarios. 
+
+The test cases cover both **functional** and **non-functional** aspects of the system, enabling consistent quality assurance and traceability throughout the testing lifecycle.
 
 ---
 
