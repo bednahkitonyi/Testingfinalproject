@@ -316,7 +316,188 @@ The test cases cover both **functional** and **non-functional** aspects of the s
 **Expected Result:** Feedback is recorded successfully
 
 
-**Prepared By:** QA Team, CleanCity  
-**Date:** 2025-06-28  
-**Status:** Complete
+
+# 🧪 Gamification Test Cases
+
+---
+
+## ✅ Positive Test Cases
+
+---
+
+#### 1. Award badge for first pickup scheduled
+
+ **Precondition:** The user has no previous pickups.
+
+ **Steps:**
+  1. Login to the application using valid credentials.
+  2. Navigate to the **Pickup** section.
+  3. Schedule a new pickup with valid details.
+  4. Submit the pickup request.
+  5. Navigate to the **Badges** section.
+
+ **Expected Result:**  A badge labeled **"First Pickup Scheduled"** is awarded and visible.
+
+---
+
+#### 2. Award badge after 10 pickups completed
+
+ **Precondition:** The user has already completed 9 pickups.
+
+ **Steps:**
+  1. Login to the application.
+  2. Schedule and complete one more pickup.
+  3. Return to the dashboard or profile.
+  4. Navigate to **Badges** section.
+
+ **Expected Result:**  **"10 Pickups Completed"** badge appears in the user's badge list.
+
+---
+
+#### 3. Award badge for perfect recycling score
+
+ **Precondition:** Recycling score logic is implemented.
+
+ **Steps:**
+  1. Login to the application.
+  2. Schedule a pickup with correctly sorted recyclables.
+  3. Submit the pickup.
+  4. Check recycling score on the dashboard.
+  5. Open **Badges** section.
+
+ **Expected Result:**  Badge for **"Perfect Recycling Score"** is displayed.
+
+---
+
+#### 4. Award badge for community contributor
+
+ **Precondition:** User participates in community activities (e.g., referrals).
+
+ **Steps:**
+  1. Login to the application.
+  2. Refer a new user or join a community cleanup event.
+  3. Complete the qualifying community action.
+  4. Visit the **Badges** section.
+
+ **Expected Result:**  **"Community Contributor"** badge is awarded.
+
+---
+
+#### 5. Award points for completed pickup
+
+**Precondition:** Point awarding logic is enabled.
+
+ **Steps:**
+  1. Login to the application.
+  2. Schedule and complete a pickup.
+  3. Navigate to the user profile or dashboard.
+
+ **Expected Result:** Points are added to the user's total.
+
+---
+
+#### 6. Level increases after reaching point threshold
+
+ **Precondition:** User is close to leveling up (e.g., 95/100 points).
+
+ **Steps:**
+  1. Complete an activity that awards sufficient points.
+  2. Refresh the dashboard or profile page.
+
+ **Expected Result:**  User’s level increases and reflects the new level.
+
+---
+
+#### 7. View current level and points in profile
+
+ **Precondition:** User has accumulated some points.
+
+ **Steps:**
+  1. Login to the application.
+  2. Navigate to the user profile.
+  3. Locate the points and level section.
+
+**Expected Result:** Current point total and level are displayed.
+
+---
+
+## ❌ Negative Test Cases
+
+---
+
+#### 8. Badge is awarded multiple times for the same event
+
+ **Precondition:** User has already earned the **"First Pickup Scheduled"** badge.
+
+ **Steps:**
+  1. Schedule another pickup.
+  2. Refresh the badge section.
+
+ **Expected Result:**  **"First Pickup Scheduled"** badge is not duplicated.
+
+---
+
+#### 9. User receives points without valid activity
+
+ **Precondition:** API or frontend vulnerability.
+
+ **Steps:**
+  1. Attempt to manipulate point API via console or external tool.
+
+ **Expected Result:** System rejects the manipulation; points remain unchanged.
+
+---
+
+#### 10. Level does not update correctly after rollback
+
+**Precondition:** Points rollback due to admin correction.
+
+ **Steps:**
+  1. Admin reduces user points below threshold.
+  2. User logs in and checks level.
+
+ **Expected Result:** Level reflects reduced points accurately.
+
+---
+
+#### 11. Badge awarded without completing valid community action
+
+ **Steps:**
+  1. Attempt to claim community badge without doing referral.
+  2. Reload badge list.
+
+ **Expected Result:** Community badge is not awarded.
+
+---
+
+## 🎨 UI/UX Test Cases
+
+---
+
+#### 12. Badge icons are unique and well labeled
+
+ **Steps:**
+  1. Navigate to **Badges** section.
+
+ **Expected Result:** Each badge has unique icons and labels.
+
+---
+
+#### 13. Points and levels use consistent styles and colors
+
+ **Steps:**
+  1. View dashboard and profile.
+
+ **Expected Result:**  Progress bar and colors match level progression.
+
+---
+
+#### 14. Responsive badge and level display on mobile devices
+
+ **Steps:**
+  1. Open app on mobile or resize browser.
+  2. View badges and level display.
+
+**Expected Result:**  All elements adjust without overflow or distortion.
+
 
