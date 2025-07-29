@@ -6,7 +6,7 @@ This document outlines how to reproduce a known issue in a dual-boot setup with 
 
 ## 🔧 Fresh System Setup
 
-### 1. Install Windows (10 or 11)
+### 1. Install Windows 
 - Use **UEFI mode** (not Legacy BIOS).
 - Allow Windows to create the **EFI System Partition (ESP)**.
 
