@@ -39,7 +39,7 @@ This document outlines how to reproduce a known issue in a dual-boot setup with 
 
 ## ❌ Post-Update Behavior
 
-### 8. Reboot After Update
+### 8. Reboot After 
 - **GRUB menu no longer appears**.
 - System boots **directly into Windows**.
 
@@ -47,3 +47,4 @@ This document outlines how to reproduce a known issue in a dual-boot setup with 
 - Select "ubuntu" (if still listed).
 
 ### 10. Observe Error Message:
+- Failed to load image -Not Found
