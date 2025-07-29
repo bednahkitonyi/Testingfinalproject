@@ -1,6 +1,10 @@
+
 Ubuntu Not Booting After Windows Update (Fresh System)
 
-## 🔧 Fresh System Setup (No Preconditions)
+This document outlines how to reproduce a known issue in a dual-boot setup with Windows and Ubuntu, where a major Windows update causes the Ubuntu bootloader (GRUB) to become inaccessible or deleted. This results in the system booting directly into Windows, with Ubuntu no longer appearing in the boot menu. The steps below start from a clean installation and walk through the configuration, update, and failure scenario for debugging or testing purposes.
+
+
+## 🔧 Fresh System Setup
 
 ### 1. Install Windows (10 or 11)
 - Use **UEFI mode** (not Legacy BIOS).
