@@ -1,4 +1,4 @@
-# 🧪 Steps to Reproduce: Ubuntu Not Booting After Windows Update (Fresh System)
+Ubuntu Not Booting After Windows Update (Fresh System)
 
 ## 🔧 Fresh System Setup (No Preconditions)
 
